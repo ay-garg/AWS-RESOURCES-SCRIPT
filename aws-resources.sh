@@ -1,49 +1,59 @@
 cyan=$(tput setaf 14);
-NOCOLOR="\033[0m"
+NOCOLOR=$(tput setaf 160);
 
-echo "\n"
+echo ""
 
-echo "${cyan}-----S3 Buckets-----${NOCOLOR}"
+echo "${cyan}----------------------""${NOCOLOR}S3 Buckets""${cyan}----------------------"
 aws s3 ls
 
-echo "\n"
+echo ""
 
-echo "${cyan}-----DynamoDB Tables-----${NOCOLOR}"
+echo "${cyan}----------------------""${NOCOLOR}DynamoDB Tables""${cyan}----------------------"
 aws dynamodb list-tables
 
-echo "\n"
+echo ""
 
-echo "${cyan}-----Cognito User Pools-----${NOCOLOR}"
+echo "${cyan}----------------------""${NOCOLOR}Cognito User Pools""${cyan}----------------------"
 aws cognito-idp list-user-pools --max-results 20
 
-echo "\n"
+echo ""
 
-echo "${cyan}-----EC2 Instances-----${NOCOLOR}"
+echo "${cyan}----------------------""${NOCOLOR}EC2 Instances""${cyan}----------------------"
 aws ec2 describe-instances --query 'Reservations[*].Instances[*].[Placement.AvailabilityZone, State.Name, InstanceId, ImageId, InstanceType, KeyName, PublicIpAddress, Tags]' --output text
 
-echo "\n"
+echo ""
 
-echo "${cyan}-----Lambda Functions-----${NOCOLOR}"
+echo "${cyan}----------------------""${NOCOLOR}Lambda Functions""${cyan}----------------------"
 aws lambda list-functions
 
-echo "\n"
+echo ""
 
-echo "${cyan}-----IAM Roles-----${NOCOLOR}"
+echo "${cyan}----------------------""${NOCOLOR}IAM Roles""${cyan}----------------------"
 aws iam list-roles
 
-echo "\n"
+echo ""
 
-echo "${cyan}-----AWS IAM Users-----${NOCOLOR}"
+echo "${cyan}----------------------""${NOCOLOR}AWS IAM Users""${cyan}----------------------"
 aws iam get-user
 
-echo "\n"
+echo ""
 
-echo "${cyan}-----CloudWatch Alarms-----${NOCOLOR}"
+echo "${cyan}----------------------""${NOCOLOR}CloudWatch Alarms""${cyan}----------------------"
 aws cloudwatch describe-alarms
 
-echo "\n"
+echo ""
 
-echo "${cyan}-----GraphQL APIs-----${NOCOLOR}"
+echo "${cyan}----------------------""${NOCOLOR}GraphQL APIs""${cyan}----------------------"
 aws appsync list-graphql-apis
 
-echo "\n"
+echo ""
+
+echo "${cyan}----------------------""${NOCOLOR}CloudFormation Stacks""${cyan}----------------------"
+aws cloudformation list-stacks
+
+echo ""
+
+echo "${cyan}----------------------""${NOCOLOR}ELB""${cyan}----------------------"
+aws elb describe-load-balancers
+
+echo ""
